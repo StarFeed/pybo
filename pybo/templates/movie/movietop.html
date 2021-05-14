@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>
+
+</p>
+<div class="container">
+    {% if movieinfo_toplist %}
+        <table class="table table-hover">
+            <thead>
+            <tr class="thead-dark">
+                <th>순위</th>
+                <th>포스터</th>
+                <th>제목</th>
+                <th>장르</th>
+                <th>평점(10점 기준)</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for movie in movieinfo_toplist %}
+                <tr>
+                    <td> {{ loop.index }} </td>
+                    <td> <img src="{{movie.img}}" height="100" with="100"> </td>
+                    <td> {{ movie.title|safe }} </td>
+                    <td> {{ movie.genre }}</td>
+                    <td> {{ movie.star }}</td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+</div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+from pybo import db
+
+class Question(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    subject = db.Column(db.String(200), nullable=False)
+    content = db.Column(db.Text(),nullable=False)
+    create_date = db.Column(db.DateTime(),nullable=False)
+
+#flask db migrate -> 마이그레이트 파일 생성 등록
+#flask db upgrade -> table에 업데이트
+
+
+
+class Answer(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    question_id = db.Column(db.Integer, db.ForeignKey('question.id',ondelete='CASCADE'))
+    question = db.relationship('Question',backref=db.backref('answer_set'))
+    content = db.Column(db.Text(),nullable=False)
+    create_date = db.Column(db.DateTime(),nullable=False)
+
+
+class User(db.Model) :
+    id = db.Column(db.Integer, primary_key=True)
+    username=db.Column(db.String(150), unique=True, nullable=False)
+    password = db.Column(db.String(200), nullable=False)
+    email = db.Column(db.String(12), unique=True, nullable=False)
