@@ -24,5 +24,5 @@ app.register_blueprint(answer_views.bp)
 app.register_blueprint(auth_views.bp)
 app.register_blueprint(movie_views.bp)
 
-    from .filter import format_datetime
+from .filter import format_datetime
 app.jinja_env.filters['datetime'] = format_datetime
